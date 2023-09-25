@@ -35,16 +35,16 @@ module Jekyll
       def parse_blocks(doc_filename, doc_content)
         block_matches = doc_content.scan(REGEX_WIKI_LINK_BLOCKS)
         if !block_matches.nil? && block_matches.size != 0
-          block_matches.each do |wl_match|
+          block_matches.each do |w_match|
             # init block wikilink
             wikilink_block = WikiLinkBlock.new(
               @doc_manager,
               doc_filename,
-              wl_match[0], # link_type
-              wl_match[2], # bullet_type
+              w_match[0], # link_type
+              w_match[2], # bullet_type
             )
             # extract + add filenames
-            items = wl_match[1]
+            items = w_match[1]
             filename_matches = items.scan(/#{REGEX_LINK_LEFT}#{REGEX_FILENAME}#{REGEX_LINK_RIGHT}/i)
             filename_matches.each do |match|
               match.each do |fname|
@@ -61,16 +61,16 @@ module Jekyll
       def parse_inlines(doc_filename, doc_content)
         inline_matches = doc_content.scan(REGEX_WIKI_LINK_INLINES)
         if !inline_matches.nil? && inline_matches.size != 0
-          inline_matches.each do |wl_match|
+          inline_matches.each do |w_match|
             @wikilink_inlines << WikiLinkInline.new(
               @doc_manager,
               doc_filename,
-              wl_match[0],
-              wl_match[1],
-              wl_match[2],
-              wl_match[3],
-              wl_match[4],
-              wl_match[5],
+              w_match[0],
+              w_match[1],
+              w_match[2],
+              w_match[3],
+              w_match[4],
+              w_match[5],
             )
           end
         end
@@ -159,7 +159,7 @@ module Jekyll
           Jekyll.logger.error("Jekyll-WikiRefs: Invalid wikilink level")
         end
         return '<a class="' + $wiki_conf.css_name("wiki") + link_type_txt + '" href="' + lnk_doc_rel_url + '">' + inner_txt + '</a>'
-  		end
+      end
 
       # helpers
 
