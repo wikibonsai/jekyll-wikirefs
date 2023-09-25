@@ -1,6 +1,6 @@
-## [0.0.13] - #todo
+## [0.0.13] - 2023-09-25
 ### Changed
-- jekyll-wikilinks -> jekyll-wikirefs
+- `jekyll-wikilinks` -> `jekyll-wikirefs`
 ## [0.0.12] - 2022-05-07
 ### Changed
 - Update nokogiri version.
