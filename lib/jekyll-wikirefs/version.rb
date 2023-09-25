@@ -3,7 +3,7 @@
 module Jekyll
   module WikiRefs
 
-    VERSION = "0.0.1"
+    VERSION = "0.0.13"
 
   end
 end

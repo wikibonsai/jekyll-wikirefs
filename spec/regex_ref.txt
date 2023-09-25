@@ -1,0 +1,127 @@
+If parsing has bugs, test on https://rubular.com/ with the regex from parser.rb and the below info:
+
+test text:
+----------
+
+# vanilla
+
+[[wikilink]].
+
+[[wikilink#header]].
+
+[[wikilink#^block_id]].
+
+# typed
+
+link-type::[[wikilink]].
+
+link-type::[[wikilink#header]].
+
+link-type::[[wikilink#^block_id]].
+
+# labelled
+
+[[wikilink|label txt]].
+
+[[wikilink#header|label txt]].
+
+[[wikilink#^block_id|label txt]].
+
+# labelled w bracket
+
+[[wikilink|[bracketted] label txt]].
+
+[[wikilink|bracketted label [txt]]].
+
+[[wikilink#header|[bracketted] label txt]].
+
+[[wikilink#^block_id|[bracketted] label txt]].
+
+# embedded
+
+![[wikilink]]
+
+![[wikilink#header]]
+
+![[wikilink#^block_id]]
+
+# typed embedded
+
+!link-type::[[wikilink]]
+
+!link-type::[[wikilink#header]]
+
+!link-type::[[wikilink#^block_id]]
+
+what if the !type::[[wikilink]] is inline?
+
+# typed labelled
+
+link-type::[[wikilink|label txt]].
+
+link-type::[[wikilink#header|label txt]].
+
+link-type::[[wikilink#^block_id|label txt]].
+
+# stacked header-block
+
+[[wikilink#header#^block]].
+
+# block (single) wikilink
+
+block::[[wikilink]]
+only single newline required
+# block (list) wikilink
+
+block::[[one]],[[two]]
+only single newline required
+block::[[one]],[[two]],[[three]]
+
+block :: [[one]], [[two]]
+
+block :: [[one]], [[two]], [[three]]
+
+block::
+- [[one]]
+only single newline required
+block::
+* [[one]]
+* [[two]]
+
+block::
++ [[one]]
++ [[two]]
++ [[three]]
+
+block ::
+- [[one]]
+- [[two]]
+- [[three]]
+- [[four]]
+
+block ::
+* [[one]]
+* [[two]]
+* [[three]]
+* [[four]]
+* [[five]]
+
+block ::
++ [[one]]
++ [[two]]
++ [[three]]
++ [[four]]
++ [[five]]
++ [[six]]
+
+---
+
+# known invalids
+
+# stacked headers
+
+[[wikilink#header#another-header]].
+
+# header range
+
+[[wikilink#header#another:#header]].
