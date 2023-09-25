@@ -113,9 +113,9 @@ RSpec.describe(Jekyll::WikiRefs::Generator) do
 
     end
 
-    context "EMBEDDED TYPED [[wikilinks]]" do
+    context "bug" do
 
-      pending("TODO")
+      pending("TODO: [[wikilink]] followed by ![[wikilink]] would clobber the embed")
 
     end
 

@@ -78,7 +78,7 @@ module Jekyll
         return if @wikilink_inlines.nil?
         # process typed wikilinks first so we don't accidentally 
         # overwrite them when handling untyped wikilinks
-        self.sort_typed_first
+        self.sort_for_replacement
         @wikilink_inlines.each do |wikilink|
           doc_content.gsub!(
             wikilink.md_regex,
@@ -163,17 +163,18 @@ module Jekyll
 
       # helpers
 
-      def sort_typed_first
+      def sort_for_replacement
         # sorting inline wikilinks is necessary so when wikilinks are replaced,
-        # longer strings are replaced first so as not to accidentally overwrite 
+        # !embeds and longer strings are replaced first so as not to accidentally overwrite 
         # substrings
         # (this is especially likely if there is a matching wikilink that 
-        #  appears as both untyped and typed in a document)
+        #  appears as both untyped and typed in a document or in a regular link and embed)
         temp = @wikilink_inlines.dup
         @wikilink_inlines.clear()
-        typed_wikilinks = temp.select { |wl| wl.is_typed? }
-        untyped_wikilinks = temp.select { |wl| !wl.is_typed? }
-        @wikilink_inlines = typed_wikilinks.concat(untyped_wikilinks)
+        embeds = temp.select { |w| w.embedded? }
+        typed_wikilinks = temp.select { |w| w.is_typed? }
+        untyped_wikilinks = temp.select { |w| !w.is_typed? }
+        @wikilink_inlines = embeds.concat(typed_wikilinks.concat(untyped_wikilinks))
       end
     end
 
