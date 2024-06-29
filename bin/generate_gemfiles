@@ -1,0 +1,18 @@
+# bin/generate_gemfiles.sh
+#!/bin/bash
+
+
+versions=("4.2.0" "4.3.0")
+
+for version in "${versions[@]}"; do
+  gemfile="Gemfile.jekyll-${version}"
+  echo "source 'https://rubygems.org'" > $gemfile
+  echo "gem 'jekyll', '~> ${version}'" >> $gemfile
+  echo "gem 'nokogiri', '~> 1.13.3'" >> $gemfile
+  echo "gem 'rake', '~> 13.0.3'" >> $gemfile
+  echo "gem 'rspec', '~> 3.10.0'" >> $gemfile
+  echo "gem 'rubocop', '~> 1.14.0'" >> $gemfile
+  echo "gem 'webrick', '~> 1.7'" >> $gemfile
+  echo "gemspec" >> $gemfile
+  BUNDLE_GEMFILE=$gemfile bundle install
+done

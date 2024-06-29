@@ -1,0 +1,10 @@
+# bin/clean_gemfiles.sh
+#!/bin/bash
+
+
+echo "Current directory: $(pwd)"
+echo "Attempting to remove files: ./Gemfile.jekyll-*"
+ls -l .
+rm -f ./Gemfile.jekyll-*
+echo "Files after removal attempt:"
+ls -l ./Gemfile.jekyll-*

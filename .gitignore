@@ -5,6 +5,9 @@ Gemfile.lock
 **/vendor/bundle
 /pkg/
 
+# jekyll version testing
+/Gemfile.jekyll-*
+
 # Jekyll cache & metadata
 .jekyll-cache/
 .jekyll-metadata

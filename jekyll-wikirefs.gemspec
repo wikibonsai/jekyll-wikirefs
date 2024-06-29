@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "jekyll", "~> 4.2.0"
+  spec.add_dependency "jekyll"
   spec.add_dependency "nokogiri", "~> 1.13.3"
 
   # For more information and examples about making a new gem, checkout our
