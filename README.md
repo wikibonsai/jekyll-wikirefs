@@ -221,6 +221,21 @@ For more note-taking-related syntaxes such as \=\=highlights== and \~\~strikethr
 - For kramdown, check out their [project page](https://github.com/gettalong/kramdown/projects/1) ([highlights ticket](https://github.com/gettalong/kramdown/issues/559), [strikethrough ticket](https://github.com/gettalong/kramdown/issues/594)).
 - For something that is functional now, see the [redcarpet markdown parser](https://github.com/vmg/redcarpet).
 
+### A Note on Escapes
+
+It is common practice to escape markdown rendering by using code spans (with backticks `like this`) or code blocks...
+
+```
+like this
+```
+
+However, those methods will not work for this plugin. This is because it uses regular expressions instead of in-line parsing to extract wikirefs. So to escape wikirefs, you will need to break up the wikiref so it is not picked up by the regular expressions. For example, the following will simply render the wikiref text:
+
+```markdown
+\[\[wikilink]]
+```
+
+This implementation choice is a result of working with legacy systems -- you can read more about it [here](https://talk.jekyllrb.com/t/how-to-properly-extend-jekyll-kramdown-markdown-parsing/6031).
 
 ## MetaData
 The following metadata are stored as frontmatter variables and are accessible in liquid templates:
