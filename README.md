@@ -151,22 +151,6 @@ Resulting HTML:
 
 ---
 
-### File Paths 
-⚠️ TODO: Unique filenames are still expected. This will change eventually.
-```markdown
-[[/directory/filename]]
-```
-File paths may be added to a link to point to a file with more specificity.
-
-- Absolute paths should start with a forward slash `/`.
-- ⚠️ TODO: Relative paths should start with a directory name.
-
-File paths only work for inline wikilinks.
-
-Resulting HTML (this will look identical to wikilinks without file paths):
-```html
-<a class="wiki-link" href="url">file's title</a>
-```
 ### Labels (sometimes called 'aliases')
 ```markdown
 [[filename|label text]]
