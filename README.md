@@ -235,7 +235,7 @@ However, those methods will not work for this plugin. This is because it uses re
 \[\[wikilink]]
 ```
 
-This implementation choice is a result of working with legacy systems -- you can read more about it [here](https://talk.jekyllrb.com/t/how-to-properly-extend-jekyll-kramdown-markdown-parsing/6031).
+This implementation choice is a result of working with legacy systems -- you can read more about it [here](https://talk.jekyllrb.com/t/how-to-properly-extend-jekyll-kramdown-markdown-parsing/6031) and [here](https://github.com/wikibonsai/jekyll-wikirefs/issues/3#issuecomment-2214260082) (PRs to change this behavior are [welcome](https://github.com/wikibonsai/jekyll-wikirefs/issues/3)).
 
 ## MetaData
 The following metadata are stored as frontmatter variables and are accessible in liquid templates:
