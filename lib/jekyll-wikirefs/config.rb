@@ -13,6 +13,8 @@ module Jekyll
       # css-related
       CSS_KEY = "css"
       NAME_KEY = "name"
+      # text styling
+      CASE_KEY = "case"
       # names
       ## valid
       TYPED_KEY = "typed"
@@ -61,6 +63,17 @@ module Jekyll
 
       def disabled_attributes?
         option_attributes(ENABLED_KEY) == false
+      end
+
+      def text_case_style
+        style = option(CASE_KEY)
+        valid_styles = [
+          "UPPER CASE", "Train-Case", "Macro_Case",
+          "lower case", "kebab-case", "snake_case",
+          "camelCase", "PascalCase", "none",
+        ]
+        return style if valid_styles.include?(style)
+        return "lowercase" # default
       end
 
       def exclude?(type)

@@ -25,6 +25,8 @@ Defaults look like this:
 wikilinks:
   attributes:
     enabled: true
+  case:
+    'lowercase'
   css:
     exclude: []
     name:
@@ -43,6 +45,20 @@ wikilinks:
 ```
 
 `attributes`: Toggles on/off attributes and block level wikilinks. If turned off the `attributes` meta data will not be added to each document and block level wikilinks will not be removed from the content of the document.
+
+`case`: Determines what case to render the wikiref text in. Options are (be sure to match case and spacing):
+
+- `UPPER CASE`
+- `Train-Case`
+- `Macro_Case`
+- `lower case` (default)
+- `kabob-case`
+- `snake_case`
+- `camelCase`
+- `PascalCase`
+- `none` (just render title metadata directly)
+
+...as listed in this [stackoverflow post](https://stackoverflow.com/questions/17326185/what-are-the-different-kinds-of-cases).
 
 `css_names`: Customiztable css class names.
 

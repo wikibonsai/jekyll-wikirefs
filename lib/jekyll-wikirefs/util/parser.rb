@@ -131,15 +131,18 @@ module Jekyll
         if wikilink.labelled?
           inner_txt = wikilink.label_txt
         elsif linked_doc.data.keys.include?('title')
-          inner_txt = linked_doc.data['title'].downcase
+          title_text = linked_doc.data['title']
+          inner_txt = apply_case_style(title_text)
         # in case there is no 'title' frontmatter attribute 
         # (i'm seeing deprecation warnings, but there might 
         #  be bugs caused by not using this...)
         elsif linked_doc.respond_to?(:title)
-          inner_txt = linked_doc.title.downcase
+          title_text = linked_doc.title
+          inner_txt = apply_case_style(title_text)
         # pages don't have automatically generated titles
         else
-          inner_txt = Jekyll::Utils.slugify(linked_doc.basename)
+          title_text = Jekyll::Utils.slugify(linked_doc.basename)
+          inner_txt = apply_case_style(title_text)
         end
         # level-specific
         if (wikilink.level == "file_path" || wikilink.level == "filename")
@@ -162,6 +165,32 @@ module Jekyll
       end
 
       # helpers
+
+      def apply_case_style(text)
+        case $wiki_conf.text_case_style
+        when "UPPER CASE"
+          return text.upcase
+        when "Train-Case"
+          return text.split(/[\s_-]/).map(&:upcase).join('-')
+        when "Macro_Case"
+          return text.split(/[\s_-]/).map(&:upcase).join('_')
+        when "lower case"
+          return text.downcase
+        when "kebab-case"
+          return text.downcase.gsub(/\s+/, '-')
+        when "snake_case"
+          return text.downcase.gsub(/\s+/, '_')
+        when "camelCase"
+          words = text.split(/[\s_-]/)
+          return words[0].downcase + words[1..-1].map(&:capitalize).join('')
+        when "PascalCase"
+          return text.split(/[\s_-]/).map(&:capitalize).join('')
+        when "none"
+          return text
+        else
+          return text.downcase # fallback to current behavior
+        end
+      end
 
       def sort_for_replacement
         # sorting inline wikilinks is necessary so when wikilinks are replaced,

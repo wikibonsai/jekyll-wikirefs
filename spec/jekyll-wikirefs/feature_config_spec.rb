@@ -136,6 +136,111 @@ RSpec.describe(Jekyll::WikiRefs) do
 
     end
 
+    context "case style configs:" do
+      let(:inline_untyped_link) { find_by_title(site.collections["untyped"].docs, "Untyped Link") }
+      
+      context "when 'case' is set to 'UPPER CASE'" do
+        let(:config_overrides) { {
+          "collections" => { "untyped" => { "output" => true }, "target" => { "output" => true } },
+          "wikirefs" => { "case" => "UPPER CASE" },
+        } }
+
+        it "renders link text in uppercase" do
+          expect(inline_untyped_link.output).to include(">BLANK A<")
+        end
+      end
+
+      context "when 'case' is set to 'lower case'" do
+        let(:config_overrides) { {
+          "collections" => { "untyped" => { "output" => true }, "target" => { "output" => true } },
+          "wikirefs" => { "case" => "lower case" },
+        } }
+
+        it "renders link text in lowercase" do
+          expect(inline_untyped_link.output).to include(">blank a<")
+        end
+      end
+
+      context "when 'case' is set to 'kebab-case'" do
+        let(:config_overrides) { {
+          "collections" => { "untyped" => { "output" => true }, "target" => { "output" => true } },
+          "wikirefs" => { "case" => "kebab-case" },
+        } }
+
+        it "renders link text in kebab-case" do
+          expect(inline_untyped_link.output).to include(">blank-a<")
+        end
+      end
+
+      context "when 'case' is set to 'snake_case'" do
+        let(:config_overrides) { {
+          "collections" => { "untyped" => { "output" => true }, "target" => { "output" => true } },
+          "wikirefs" => { "case" => "snake_case" },
+        } }
+
+        it "renders link text in snake_case" do
+          expect(inline_untyped_link.output).to include(">blank_a<")
+        end
+      end
+
+      context "when 'case' is set to 'camelCase'" do
+        let(:config_overrides) { {
+          "collections" => { "untyped" => { "output" => true }, "target" => { "output" => true } },
+          "wikirefs" => { "case" => "camelCase" },
+        } }
+
+        it "renders link text in camelCase" do
+          expect(inline_untyped_link.output).to include(">blankA<")
+        end
+      end
+
+      context "when 'case' is set to 'PascalCase'" do
+        let(:config_overrides) { {
+          "collections" => { "untyped" => { "output" => true }, "target" => { "output" => true } },
+          "wikirefs" => { "case" => "PascalCase" },
+        } }
+
+        it "renders link text in PascalCase" do
+          expect(inline_untyped_link.output).to include(">BlankA<")
+        end
+      end
+
+      context "when 'case' is set to 'Train-Case'" do
+        let(:config_overrides) { {
+          "collections" => { "untyped" => { "output" => true }, "target" => { "output" => true } },
+          "wikirefs" => { "case" => "Train-Case" },
+        } }
+
+        it "renders link text in TRAIN-CASE" do
+          expect(inline_untyped_link.output).to include(">BLANK-A<")
+        end
+      end
+
+      context "when 'case' is set to 'Macro_Case'" do
+        let(:config_overrides) { {
+          "collections" => { "untyped" => { "output" => true }, "target" => { "output" => true } },
+          "wikirefs" => { "case" => "Macro_Case" },
+        } }
+
+        it "renders link text in MACRO_CASE" do
+          expect(inline_untyped_link.output).to include(">BLANK_A<")
+        end
+      end
+
+      context "when 'case' is set to 'none'" do
+        let(:config_overrides) { {
+          "collections" => { "untyped" => { "output" => true }, "target" => { "output" => true } },
+          "wikirefs" => { "case" => "none" },
+        } }
+
+        it "preserves original case" do
+          # Note: The actual case depends on the content of target documents
+          # This test assumes the document title is "Blank A"
+          expect(inline_untyped_link.output).to include(">Blank A<")
+        end
+      end
+    end
+
   end
 
 end
