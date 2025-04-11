@@ -26,7 +26,7 @@ wikilinks:
   attributes:
     enabled: true
   case:
-    'lowercase'
+    'lower case'
   css:
     exclude: []
     name:
